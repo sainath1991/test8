@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * Implementing hook_preprocess_page().
+ */
+function my_theme_preprocess_page_title(&$vars) {
+  $vars['title_prefix']['mytitle']['#markup'] = t('Title: ');
+}
+
+/**
+ * Implements hook_theme().
+ */
+function my_theme_theme($existing, $type, $theme, $path) {
+  return [
+    'hello_page' => [
+      'render element' => 'requirements',
+    ]
+  ];
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for node templates.
+ */
+function my_theme_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  // Get the content type name. 
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $content_type = $node->bundle();
+    // Add suggestion if content type is news.
+    if ($content_type == 'news') {
+      $suggestions[] = 'hello_page';
+    } 
+  }
+}

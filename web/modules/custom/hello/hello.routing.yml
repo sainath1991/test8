@@ -1,0 +1,7 @@
+mysite.hello:
+  path: '/mysite/hello'
+  defaults:
+    _controller: \Drupal\hello\Controller\Mysite::content
+    _title: 'Current Time'
+  requirements:
+    _permission: 'access content'

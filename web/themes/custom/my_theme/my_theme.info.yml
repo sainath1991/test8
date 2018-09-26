@@ -1,0 +1,7 @@
+name: my theme
+type: theme
+description: my sub theme.
+core: 8.x
+base theme: bartik
+libraries:
+  - my_theme/my-styling

@@ -1,0 +1,4 @@
+my-styling:
+  css:
+    theme:
+      css/my.css: {}
