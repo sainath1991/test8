@@ -1,0 +1,17 @@
+<?php
+
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\StringTranslation\TranslatableMarkup;
+
+function smig_update_8111() {
+  $storage_definition = BaseFieldDefinition::create("string")
+    ->setLabel(new TranslatableMarkup("Place"))
+    ->setDescription(new TranslatableMarkup("The place of the course"))
+    ->setSettings(["max_length" => 255, "text_processing" => 0])
+    ->setDefaultValue("")
+    ->setDisplayOptions("view", ["label" => "above", "type" => "string", "weigth" => -3])
+    ->setDisplayOptions("form", ["type" => "string_textfield", "weigth" => -3]);
+
+  Drupal::entityDefinitionUpdateManager()
+    ->installFieldStorageDefinition('myfield', 'consumer', 'smig', $storage_definition);
+} 
