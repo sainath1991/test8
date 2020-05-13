@@ -1,0 +1,15 @@
+<?php
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+
+function smig_entity_bundle_field_info(EntityTypeInterface $entity_type, $bundle, array $base_field_definitions) {
+  // Add a property only to nodes of the 'article' bundle.
+  if ($entity_type->id() == 'consumer' && $bundle == 'consumer') {
+    $fields = array();
+    $fields['myfield'] = BaseFieldDefinition::create('string')
+      ->setLabel(t('More text'))
+      ->setDisplayOptions('form', ['type' => 'string_textfield']);
+    return $fields;
+  }
+}
